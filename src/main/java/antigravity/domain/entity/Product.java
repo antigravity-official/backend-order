@@ -1,13 +1,13 @@
-package dcode.domain.entity;
+package antigravity.domain.entity;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class User {
+public class Product {
 
     private int id;
     private String name;
-    private int point;
+    private int price;
 }

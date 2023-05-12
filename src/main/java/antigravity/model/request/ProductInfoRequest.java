@@ -1,4 +1,4 @@
-package dcode.model.request;
+package antigravity.model.request;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package dcode.repository;
+package antigravity.repository;
 
-import dcode.domain.entity.User;
+import antigravity.domain.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

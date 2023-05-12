@@ -1,6 +1,6 @@
-package dcode.model.response;
+package antigravity.model.response;
 
-import dcode.domain.entity.Product;
+import antigravity.domain.entity.Product;
 import lombok.Builder;
 import lombok.Data;
 

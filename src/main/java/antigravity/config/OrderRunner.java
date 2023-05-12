@@ -1,8 +1,8 @@
-package dcode.config;
+package antigravity.config;
 
-import dcode.controller.DcodeController;
-import dcode.model.request.OrderRequest;
-import dcode.model.request.ProductInfoRequest;
+import antigravity.controller.DcodeController;
+import antigravity.model.request.OrderRequest;
+import antigravity.model.request.ProductInfoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
