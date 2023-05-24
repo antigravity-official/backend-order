@@ -42,8 +42,8 @@ public class OrderProduct {
 
 		OrderProduct orderProduct = new OrderProduct();
 		orderProduct.setProduct(product);
-		orderProduct.setOrderCount(request.getProductInfo().getProductCount());
-		orderProduct.setDiscountPoint(request.getPoint());
+		orderProduct.setOrderCount(Integer.valueOf(request.getProductInfo().getProductCount()));
+		orderProduct.setDiscountPoint(Integer.valueOf(request.getPoint()));
 		orderProduct.setDiscountCouponAmount(coupon.getDiscountAmount());
 		orderProduct.setColor(request.getProductInfo().getColor());
 		orderProduct.setSize(request.getProductInfo().getSize());
