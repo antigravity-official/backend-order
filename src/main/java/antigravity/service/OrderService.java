@@ -1,5 +1,7 @@
 package antigravity.service;
 
+import antigravity.common.exception.CommonApiException;
+import antigravity.common.exception.ExceptionCode;
 import antigravity.domain.entity.*;
 import antigravity.model.request.OrderRequest;
 import antigravity.model.response.OrderDetailResponse;
@@ -9,6 +11,7 @@ import antigravity.repository.ProductRepository;
 import antigravity.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -27,23 +30,25 @@ public class OrderService {
     private final PaymentGatewayService paymentGatewayService;
     private final StockService stockService;
 
-    public void orderCreate(OrderRequest request) {
+    @Async
+    public OrderDetailResponse orderCreate(OrderRequest request) {
 
         try {
             //정상결제 확인
             if (!paymentGatewayService.checkPaymentStatus(request.getTId())) {
-                throw new RuntimeException();
+                throw new CommonApiException(ExceptionCode.BAD_REQUEST);
             }
 
             //재고 확인
-            stockService.decreaseAndGet(request.getProductInfo().getProductId(), request.getProductInfo().getProductCount());
-
+            long quantity = stockService.decreaseAndGet(request.getProductInfo().getProductId(), request.getProductInfo().getProductCount());
+            log.error("quantity:{}", quantity);
             //user 조회
-            User user = userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException());
+            User user = userRepository.findById(request.getUserId()).orElseThrow(() -> new CommonApiException(ExceptionCode.USER_INFO_NOTFOUND));
             user.decreasePoint(request.getPoint());
 
             //상품 조회
-            Product product = productRepository.findById(request.getProductInfo().getProductId()).orElseThrow(() -> new RuntimeException());
+            Product product = productRepository.findById(request.getProductInfo().getProductId())
+                    .orElseThrow(() -> new CommonApiException(ExceptionCode.PRODUCT_INFO_NOTFOUND));
 
             //쿠폰 조회
             Coupon coupon = couponRepository.findById(request.getCouponId()).orElse(new Coupon());
@@ -53,6 +58,8 @@ public class OrderService {
             Order order = Order.createOrder(user, orderProduct);
 
             orderRepository.save(order);
+
+            return orderProduct.toOrderDetailResponse();
 
         } catch (Exception exception) {
             paymentGatewayService.cancelPayment(request.getTId());

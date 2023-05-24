@@ -1,6 +1,9 @@
 package antigravity.domain.entity;
 
 import antigravity.model.request.OrderRequest;
+import antigravity.model.response.OrderDetailResponse;
+import antigravity.model.response.PriceInfoModel;
+import antigravity.model.response.ProductResponse;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.Assert;
@@ -55,4 +58,13 @@ public class OrderProduct {
 		this.orderPrice = (this.product.getPrice() * this.orderCount) - this.discountPoint - this.discountCouponAmount;
 	}
 
+	public OrderDetailResponse toOrderDetailResponse() {
+
+		ProductResponse productResponse = new ProductResponse(this.product.getName(), this.color, this.size, this.orderCount);
+		PriceInfoModel priceInfoModel = new PriceInfoModel(this.orderPrice, this.discountPoint, this.discountCouponAmount,
+				this.discountPoint + this.discountCouponAmount);
+
+		return new OrderDetailResponse(this.order.user.getName(), productResponse, priceInfoModel);
+
+	}
 }

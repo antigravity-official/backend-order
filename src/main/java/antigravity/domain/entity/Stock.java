@@ -1,5 +1,7 @@
 package antigravity.domain.entity;
 
+import antigravity.common.exception.CommonApiException;
+import antigravity.common.exception.ExceptionCode;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -22,7 +24,7 @@ public class Stock {
 
 	public Long decreaseQuantity(int count) {
 		if (this.quantity - count < 0) {
-			throw new RuntimeException();
+			throw new CommonApiException(ExceptionCode.STOCK_IS_NOT_ENOUGH);
 		}
 
 		return this.quantity -= count;

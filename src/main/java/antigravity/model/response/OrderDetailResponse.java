@@ -1,11 +1,15 @@
 package antigravity.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDetailResponse {
 
     //상품정보(상품명, 상품컬러, 상품사이즈, 상품 금액), 주문갯수, 실제 결제 금액, 할인금액이 필요합니다.

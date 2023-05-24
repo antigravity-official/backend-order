@@ -43,7 +43,11 @@ public class AntigravityApplication {
 					.tId("dcode000" + i)
 					.build();
 
-			dcodeController.orderCreate(request);
+			try {
+				dcodeController.orderCreate(request);
+			} catch (Exception e) {
+
+			}
 
 		}
 
