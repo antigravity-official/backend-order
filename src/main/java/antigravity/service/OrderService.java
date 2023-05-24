@@ -11,7 +11,6 @@ import antigravity.repository.ProductRepository;
 import antigravity.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,7 +29,6 @@ public class OrderService {
     private final PaymentGatewayService paymentGatewayService;
     private final StockService stockService;
 
-    @Async
     public OrderDetailResponse orderCreate(OrderRequest request) {
 
         try {

@@ -19,7 +19,7 @@ spring:
   logging:
     level:
       org:
-        springframework.web: debug
+        springframework: debug
 
   # JPA
   jpa:
