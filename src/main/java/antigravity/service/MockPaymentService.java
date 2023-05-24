@@ -18,7 +18,7 @@ public class MockPaymentService implements PaymentGatewayService {
 	}
 
 	@Override public void cancelPayment(String transactionId) {
-		log.error("request cancellation to payment gateway - tid:{}", transactionId);
+		log.error("request cancellation to payment gateway - transaction id:{}", transactionId);
 	}
 
 	public void sendNotification() {
