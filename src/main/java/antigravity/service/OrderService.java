@@ -56,7 +56,7 @@ public class OrderService {
 
             OrderProduct orderProduct = OrderProduct.createOrderProduct(product, coupon, request);
 
-            Order order = Order.createOrder(user, orderProduct);
+            Order order = Order.createOrder(user, request.getTransactionId(), orderProduct);
 
             orderRepository.save(order);
 

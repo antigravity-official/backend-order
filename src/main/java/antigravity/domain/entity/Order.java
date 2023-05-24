@@ -17,24 +17,27 @@ public class Order {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	long id;
+	private long id;
 
 	//주문회원
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	User user;
+	private User user;
+
+	private String transactionId;
 
 	//주문시간
 	@Column(name = "payment_date")
-	LocalDateTime paymentDate;
+	private LocalDateTime paymentDate;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	List<OrderProduct> orderProducts = new ArrayList<>();
+	private List<OrderProduct> orderProducts = new ArrayList<>();
 
-	public static Order createOrder(User user, OrderProduct... orderProducts) {
+	public static Order createOrder(User user, String transactionId, OrderProduct... orderProducts) {
 
 		Order order = new Order();
 		order.setUser(user);
+		order.setTransactionId(transactionId);
 		Arrays.stream(orderProducts).forEach(order::addOrderProduct);
 		order.setPaymentDate(LocalDateTime.now());
 

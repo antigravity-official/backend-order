@@ -64,7 +64,7 @@ public class OrderProduct {
 		PriceInfoModel priceInfoModel = new PriceInfoModel(this.orderPrice, this.discountPoint, this.discountCouponAmount,
 				this.discountPoint + this.discountCouponAmount);
 
-		return new OrderDetailResponse(this.order.user.getName(), productResponse, priceInfoModel);
+		return new OrderDetailResponse(this.order.getUser().getName(), productResponse, priceInfoModel);
 
 	}
 }
