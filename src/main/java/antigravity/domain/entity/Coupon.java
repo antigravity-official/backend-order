@@ -1,13 +1,21 @@
 package antigravity.domain.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
-@Builder
+import javax.persistence.*;
+
+@Getter
+@Entity
+@Table(name = "coupon")
 public class Coupon {
 
-    private int id;
-    private String name;
-    private int discountAmount;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private long id;
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "discount_amount")
+	private int discountAmount;
 }

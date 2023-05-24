@@ -1,8 +1,11 @@
 INSERT INTO product
 VALUES (1, '안티그래비티상품', 100000);
 
-INSERT INTO coupon
+INSERT INTO coupon (id, name, discount_amount)
 VALUES (1, '안티그래비티쿠폰', 3000);
+
+INSERT INTO stock
+VALUES (1, 300, 1);
 
 INSERT INTO user
 VALUES (1, '안티그래비티유저1', 2000);

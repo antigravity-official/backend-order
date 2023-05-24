@@ -7,8 +7,8 @@ import lombok.Data;
 @Builder
 public class ProductInfoRequest {
 
-    private int productId;
-    private int productCount;
-    private String color;
-    private String size;
+	private long productId;
+	private int productCount;
+	private String color;
+	private String size;
 }

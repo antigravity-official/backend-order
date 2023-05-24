@@ -1,10 +1,9 @@
 package antigravity.repository;
 
-import antigravity.domain.entity.Order;
+import antigravity.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long>, CustomOrderRepository {
-
+public interface UserRepository extends JpaRepository<User, Long> {
 }
