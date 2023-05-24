@@ -7,4 +7,6 @@ public interface PaymentGatewayService {
 
 	//결제 취소
 	void cancelPayment(String transactionId);
+
+	void sendNotification();
 }

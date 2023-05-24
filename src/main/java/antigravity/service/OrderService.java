@@ -64,6 +64,7 @@ public class OrderService {
 
         } catch (Exception exception) {
             paymentGatewayService.cancelPayment(request.getTransactionId());
+            paymentGatewayService.sendNotification();
             throw exception;
         }
 
