@@ -404,3 +404,6 @@ INSERT INTO user
 VALUES (199, '안티그래비티유저199', 2000);
 INSERT INTO user
 VALUES (200, '안티그래비티유저200', 2000);
+
+INSERT INTO inventory
+VALUES (1, 1, 'XL','black',300);
